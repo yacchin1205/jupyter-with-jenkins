@@ -25,4 +25,6 @@ RUN mv /opt/conda/bin/jupyterhub-singleuser /opt/conda/bin/_jupyterhub-singleuse
     cp /tmp/resource/conf/bin/* /opt/conda/bin/ && \
     chmod +x /opt/conda/bin/jupyterhub-singleuser /opt/conda/bin/jupyter-notebook
 
+RUN cat /tmp/resource/conf/jupyter_notebook_config.py >> $CONDA_DIR/etc/jupyter/jupyter_notebook_config.py
+
 USER $NB_USER
