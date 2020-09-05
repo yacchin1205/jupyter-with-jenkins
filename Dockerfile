@@ -20,7 +20,7 @@ RUN sh -c 'wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | 
     && sh -c 'echo deb http://dl.google.com/linux/chrome/deb/ stable main >> \
        /etc/apt/sources.list.d/google.list' \
     && apt-get update && apt-get install -y xvfb google-chrome-stable \
-    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/lib/apt/lists/*
 
 # ChromeDriver
 ENV CHROMEDRIVER_VERSION=85.0.4183.87
