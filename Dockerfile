@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -yq supervisor tinyproxy gnupg curl \
     && apt-get update && apt-get install -yq openjdk-8-jdk jenkins \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Server Proxy
-RUN pip install jupyter-server-proxy && \
+# Server Proxy and papermill
+RUN pip --no-cache-dir install jupyter-server-proxy papermill && \
     jupyter serverextension enable --sys-prefix jupyter_server_proxy
 
 COPY . /tmp/resource
@@ -30,5 +30,21 @@ RUN mv /opt/conda/bin/jupyterhub-singleuser /opt/conda/bin/_jupyterhub-singleuse
 
 # Configuration for Server Proxy
 RUN cat /tmp/resource/conf/jupyter_notebook_config.py >> $CONDA_DIR/etc/jupyter/jupyter_notebook_config.py
+
+# Selenium
+# Xvfb + Chrome
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+RUN apt-get update && apt-get install -y xvfb google-chrome-stable && rm -rf /var/lib/apt/lists/*
+
+# ChromeDriver
+ENV CHROMEDRIVER_VERSION=85.0.4183.87
+RUN cd /usr/local/sbin/ && \
+    wget https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip && \
+    unzip chromedriver_linux64.zip && \
+    chmod +x chromedriver && \
+    rm chromedriver_linux64.zip
+
+RUN pip --no-cache-dir install selenium
 
 USER $NB_USER
