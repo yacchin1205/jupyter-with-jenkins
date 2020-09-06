@@ -32,6 +32,9 @@ RUN cd /usr/local/sbin/ && \
 
 RUN pip --no-cache-dir install selenium
 
+# AWSCLI
+RUN conda install --quiet --yes awscli passlib && conda clean --all -f -y
+
 COPY . /tmp/resource
 
 # Scripts for Jenkins/Supervisor
