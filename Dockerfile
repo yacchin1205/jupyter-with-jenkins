@@ -51,6 +51,7 @@ RUN mv /opt/conda/bin/jupyterhub-singleuser /opt/conda/bin/_jupyterhub-singleuse
 
 # Configuration for Server Proxy
 RUN cat /tmp/resource/conf/jupyter_notebook_config.py >> $CONDA_DIR/etc/jupyter/jupyter_notebook_config.py
+RUN chown $NB_USER /tmp/resource/*.ipynb
 
 USER $NB_USER
 
