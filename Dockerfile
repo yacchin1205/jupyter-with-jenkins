@@ -1,4 +1,4 @@
-FROM jupyter/scipy-notebook
+FROM niicloudoperation/notebook
 
 USER root
 
@@ -55,4 +55,8 @@ RUN chown $NB_USER /tmp/resource/*.ipynb
 
 USER $NB_USER
 
-RUN cp /tmp/resource/*.ipynb /home/$NB_USER/
+# Replace contents
+RUN rm /home/$NB_USER/*.ipynb /home/$NB_USER/*.md && \
+    rm -fr /home/$NB_USER/images /home/$NB_USER/resources && \
+    cp /tmp/resource/*.md /home/$NB_USER/ && \
+    cp /tmp/resource/*.ipynb /home/$NB_USER/
