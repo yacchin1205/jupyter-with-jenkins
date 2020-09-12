@@ -59,4 +59,5 @@ USER $NB_USER
 RUN rm /home/$NB_USER/*.ipynb /home/$NB_USER/*.md && \
     rm -fr /home/$NB_USER/images /home/$NB_USER/resources && \
     cp /tmp/resource/*.md /home/$NB_USER/ && \
-    cp /tmp/resource/*.ipynb /home/$NB_USER/
+    cp /tmp/resource/*.ipynb /home/$NB_USER/ && \
+    cp -fr /tmp/resource/images /home/$NB_USER/
