@@ -1,4 +1,4 @@
-# jupyter-with-jenkins [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yacchin1205/jupyter-with-jenkins/master)
+# jupyter-with-jenkins [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yacchin1205/jupyter-with-jenkins/master?urlpath=tree)
 Jupyter with Jenkins to perform daily tasks easily
 
 # Design
@@ -8,7 +8,7 @@ Jupyter with Jenkins to perform daily tasks easily
 # Getting started jupyter-with-jenkins with MyBinder
 
 To launch jupyter-with-jenkins, simply click the binder button:
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yacchin1205/jupyter-with-jenkins/master)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yacchin1205/jupyter-with-jenkins/master?urlpath=tree)
 
 After Jupyter Notebook is open, you can open the Jenkins UI from the `jenkins` menu.
 
