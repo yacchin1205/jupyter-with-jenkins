@@ -3,9 +3,10 @@ FROM niicloudoperation/notebook
 USER root
 
 # Jenkins, Tinyproxy and Supervisor
-RUN apt-get update && apt-get install -yq supervisor tinyproxy gnupg curl \
-    && sh -c 'wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -' \
-    && sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
+RUN apt-get update && apt-get install -yq supervisor tinyproxy gnupg curl ca-certificates \
+    && sh -c 'wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \
+       /usr/share/keyrings/jenkins-keyring.asc > /dev/null' \
+    && sh -c 'echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ > \
        /etc/apt/sources.list.d/jenkins.list' \
     && apt-get update && apt-get install -yq openjdk-8-jdk jenkins \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
