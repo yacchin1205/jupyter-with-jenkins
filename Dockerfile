@@ -20,11 +20,11 @@ RUN pip --no-cache-dir install jupyter-server-proxy papermill && \
 RUN sh -c 'wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -' \
     && sh -c 'echo deb http://dl.google.com/linux/chrome/deb/ stable main >> \
        /etc/apt/sources.list.d/google.list' \
-    && apt-get update && apt-get install -y xvfb google-chrome-stable \
+    && apt-get update && apt-get install -y xvfb google-chrome-stable=97.0.4692.71-1 \
     && rm -rf /var/lib/apt/lists/*
 
 # ChromeDriver
-ENV CHROMEDRIVER_VERSION=85.0.4183.87
+ENV CHROMEDRIVER_VERSION=97.0.4692.71
 RUN cd /usr/local/sbin/ && \
     wget https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip && \
