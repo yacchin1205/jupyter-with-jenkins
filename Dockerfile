@@ -46,8 +46,9 @@ RUN mkdir -p /usr/local/bin/before-notebook.d && \
     cp -fr /tmp/resource/conf/supervisor /opt/
 
 # Boot scripts to perform /usr/local/bin/before-notebook.d/* on JupyterHub
-RUN mv /opt/conda/bin/jupyterhub-singleuser /opt/conda/bin/_jupyterhub-singleuser && \
-    mv /opt/conda/bin/jupyter-notebook /opt/conda/bin/_jupyter-notebook && \
+RUN mkdir -p /opt/jupyter-with-jenkins/original/bin/ && \
+    mv /opt/conda/bin/jupyterhub-singleuser /opt/jupyter-with-jenkins/original/bin/jupyterhub-singleuser && \
+    mv /opt/conda/bin/jupyter-notebook /opt/jupyter-with-jenkins/original/bin/jupyter-notebook && \
     cp /tmp/resource/conf/bin/* /opt/conda/bin/ && \
     chmod +x /opt/conda/bin/jupyterhub-singleuser /opt/conda/bin/jupyter-notebook
 

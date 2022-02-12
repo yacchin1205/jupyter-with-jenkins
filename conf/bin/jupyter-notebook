@@ -32,4 +32,4 @@ if [[ -z "${SUPERVISOR_INITIALIZED}" ]]; then
     run-hooks /usr/local/bin/before-notebook.d
 fi
 
-/opt/conda/bin/_jupyter-notebook $@
+/opt/jupyter-with-jenkins/original/bin/jupyter-notebook $@
