@@ -1,4 +1,4 @@
-FROM niicloudoperation/notebook
+FROM niicloudoperation/notebook:202201
 
 USER root
 
