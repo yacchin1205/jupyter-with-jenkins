@@ -17,8 +17,8 @@ RUN pip --no-cache-dir install jupyter-server-proxy papermill && \
 
 # Selenium
 # Xvfb + Chrome
-ENV GOOGLE_CHROME_STABLE_VERSION=98.0.4758.80-1 \
-    CHROMEDRIVER_VERSION=98.0.4758.80
+ENV GOOGLE_CHROME_STABLE_VERSION=98.0.4758.102-1 \
+    CHROMEDRIVER_VERSION=98.0.4758.102
 RUN sh -c 'wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -' \
     && sh -c 'echo deb http://dl.google.com/linux/chrome/deb/ stable main >> \
        /etc/apt/sources.list.d/google.list' \
