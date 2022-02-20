@@ -1,0 +1,21 @@
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - "feature/**"
+      - "fix/**"
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  run-papermill:
+    name: Run papermill command
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build docker image
+        run: docker build -t yacchin1205/jupyter-with-jenkins .
+      - name: Run papermill command
+        run: docker run --rm yacchin1205/jupyter-with-jenkins papermill "Using Selenium.ipynb" TestOutput.ipynb
