@@ -1,4 +1,4 @@
-FROM niicloudoperation/notebook:202201
+FROM niicloudoperation/notebook:latest
 
 USER root
 
@@ -25,7 +25,9 @@ RUN sh -c 'wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | 
 
 # ChromeDriver
 RUN cd /usr/local/sbin/ && \
-    wget https://chromedriver.storage.googleapis.com/$(dpkg -s google-chrome-stable | grep Version | sed -e 's,Version: \(.*\)-[0-9]*,\1,')/chromedriver_linux64.zip && \
+    export CHROME_MAJOR_VERSION=$(dpkg -s google-chrome-stable | grep Version | sed -r 's/Version: ([0-9]+)\.[0-9\.]+-[0-9]*/\1/') && \
+    export CHROMEDRIVER_VERSION=$(curl https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_MAJOR_VERSION}) && \
+    wget https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip && \
     chmod +x chromedriver && \
     rm chromedriver_linux64.zip
