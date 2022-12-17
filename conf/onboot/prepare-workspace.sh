@@ -1,5 +1,5 @@
 #!/bin/bash
 
-if [ ! -d /home/jovyan/jenkins-workspace ]; then
-  ln -s /home/jovyan/.jenkins/workspace /home/jovyan/jenkins-workspace
+if [ ! -d ${HOME}/jenkins-workspace ]; then
+  ln -s ${HOME}/.jenkins/workspace ${HOME}/jenkins-workspace
 fi
