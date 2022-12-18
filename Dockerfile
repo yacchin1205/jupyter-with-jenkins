@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -yq supervisor tinyproxy gnupg curl ca-cer
        /usr/share/keyrings/jenkins-keyring.asc > /dev/null' \
     && sh -c 'echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ > \
        /etc/apt/sources.list.d/jenkins.list' \
-    && apt-get update && apt-get install -yq openjdk-8-jdk jenkins \
+    && apt-get update && apt-get install -yq openjdk-11-jdk jenkins \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Server Proxy and papermill

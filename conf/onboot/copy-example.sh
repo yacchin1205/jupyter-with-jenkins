@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ ! -d /home/jovyan/example ]; then
-  mkdir -p /home/jovyan/example
-  chown jovyan /home/jovyan/example
-  cp -p /tmp/resource/*.ipynb /home/jovyan/example/
-  cp -p /tmp/resource/*.md /home/jovyan/example/
-  cp -pfr /tmp/resource/images /home/jovyan/example/
+if [ ! -d ${HOME}/example ]; then
+  mkdir -p ${HOME}/example
+  cp /tmp/resource/*.ipynb ${HOME}/example/
+  cp /tmp/resource/*.md ${HOME}/example/
+  cp -fr /tmp/resource/images ${HOME}/example/
+  chown ${NB_USER} -R ${HOME}/example
 fi
