@@ -1,4 +1,4 @@
-FROM niicloudoperation/notebook:latest
+FROM yacchin1205/notebook:feature-nbclassic
 
 USER root
 
