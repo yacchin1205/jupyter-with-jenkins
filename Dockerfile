@@ -47,6 +47,7 @@ RUN mkdir -p /usr/local/bin/before-notebook.d && \
 
 # Boot scripts to perform /usr/local/bin/before-notebook.d/* on JupyterHub
 RUN mkdir -p /opt/jupyter-with-jenkins/original/bin/ && \
+    mkdir -p /opt/jupyter-with-jenkins/bin/ && \
     mv /opt/conda/bin/jupyterhub-singleuser /opt/jupyter-with-jenkins/original/bin/jupyterhub-singleuser && \
     mv /opt/conda/bin/jupyter-notebook /opt/jupyter-with-jenkins/original/bin/jupyter-notebook && \
     mv /opt/conda/bin/jupyter-lab /opt/jupyter-with-jenkins/original/bin/jupyter-lab && \
