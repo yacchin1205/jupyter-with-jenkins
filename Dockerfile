@@ -47,10 +47,14 @@ RUN mkdir -p /usr/local/bin/before-notebook.d && \
 
 # Boot scripts to perform /usr/local/bin/before-notebook.d/* on JupyterHub
 RUN mkdir -p /opt/jupyter-with-jenkins/original/bin/ && \
+    mkdir -p /opt/jupyter-with-jenkins/bin/ && \
     mv /opt/conda/bin/jupyterhub-singleuser /opt/jupyter-with-jenkins/original/bin/jupyterhub-singleuser && \
     mv /opt/conda/bin/jupyter-notebook /opt/jupyter-with-jenkins/original/bin/jupyter-notebook && \
-    cp /tmp/resource/conf/bin/* /opt/conda/bin/ && \
-    chmod +x /opt/conda/bin/jupyterhub-singleuser /opt/conda/bin/jupyter-notebook
+    mv /opt/conda/bin/jupyter-lab /opt/jupyter-with-jenkins/original/bin/jupyter-lab && \
+    cp /tmp/resource/conf/bin/jupyter* /opt/conda/bin/ && \
+    cp /tmp/resource/conf/bin/*.sh /opt/jupyter-with-jenkins/bin/ && \
+    chmod +x /opt/conda/bin/jupyterhub-singleuser /opt/conda/bin/jupyter-notebook /opt/conda/bin/jupyter-lab \
+        /opt/jupyter-with-jenkins/bin/*
 
 # Configuration for Server Proxy
 RUN cat /tmp/resource/conf/jupyter_notebook_config.py >> $CONDA_DIR/etc/jupyter/jupyter_notebook_config.py

@@ -4,4 +4,4 @@ set -xe
 
 /opt/jupyter-with-jenkins/bin/run-hook.sh
 
-/opt/jupyter-with-jenkins/original/bin/jupyter-notebook $@
+/opt/jupyter-with-jenkins/original/bin/jupyter-lab $@
