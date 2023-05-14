@@ -1,0 +1,7 @@
+[program:jenkins]
+command=java -Djava.awt.headless=true -Djenkins.install.runSetupWizard=false -jar /usr/share/java/jenkins.war --prefix=%(ENV_JENKINS_SERVICE_PREFIX)sjenkins
+stdout_logfile=/tmp/supervisor-%(program_name)s.log
+stderr_logfile=/tmp/supervisor-%(program_name)s.log
+autorestart=true
+priority=10
+user=%(ENV_NB_USER)s
