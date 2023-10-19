@@ -23,21 +23,23 @@ RUN sh -c 'wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | 
     && apt-get update && apt-get install -y xvfb google-chrome-stable \
     && rm -rf /var/lib/apt/lists/*
 
+COPY . /tmp/resource
+
 # ChromeDriver
 RUN cd /usr/local/sbin/ && \
-    export CHROME_MAJOR_VERSION=$(dpkg -s google-chrome-stable | grep Version | sed -r 's/Version: ([0-9]+)\.[0-9\.]+-[0-9]*/\1/') && \
-    export CHROMEDRIVER_VERSION=$(curl https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_MAJOR_VERSION}) && \
-    wget https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip && \
-    unzip chromedriver_linux64.zip && \
-    chmod +x chromedriver && \
-    rm chromedriver_linux64.zip
+    dpkg -s google-chrome-stable | grep Version && \
+    export CHROME_MAJOR_VERSION=$(dpkg -s google-chrome-stable | grep Version | sed -r 's/Version: ([0-9]+\.[0-9\.]+)-[0-9]*/\1/') && \
+    echo CHROME_MAJOR_VERSION=${CHROME_MAJOR_VERSION} && \
+    wget -O /tmp/resource/chromedriver-linux64.zip $(python3 /tmp/resource/util/resolve-chromedriver-url.py --chrome-version ${CHROME_MAJOR_VERSION} --platform linux64) && \
+    unzip /tmp/resource/chromedriver-linux64.zip && \
+    chmod +x chromedriver-linux64/chromedriver && \
+    ln -s /usr/local/sbin/chromedriver-linux64/chromedriver /usr/local/sbin/chromedriver && \
+    rm /tmp/resource/chromedriver-linux64.zip
 
 RUN pip --no-cache-dir install selenium
 
 # AWSCLI
 RUN mamba install --quiet --yes awscli passlib && mamba clean --all -f -y
-
-COPY . /tmp/resource
 
 # Scripts for Jenkins/Supervisor
 RUN mkdir -p /usr/local/bin/before-notebook.d && \
