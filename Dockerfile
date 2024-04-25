@@ -1,4 +1,4 @@
-FROM niicloudoperation/notebook:latest
+FROM niicloudoperation/notebook:feature-lab
 
 USER root
 
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -yq supervisor tinyproxy gnupg curl ca-cer
 
 # Server Proxy and papermill
 RUN pip --no-cache-dir install jupyter-server-proxy papermill && \
-    jupyter serverextension enable --sys-prefix jupyter_server_proxy
+    jupyter server extension enable --sys-prefix jupyter_server_proxy
 
 # Selenium
 # Xvfb + Chrome
