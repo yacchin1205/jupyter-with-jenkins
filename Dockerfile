@@ -38,6 +38,10 @@ RUN cd /usr/local/sbin/ && \
 
 RUN pip --no-cache-dir install selenium
 
+# Playwright
+RUN pip --no-cache-dir install pytest-playwright && \
+    playwright install
+
 # AWSCLI
 RUN mamba install --quiet --yes awscli passlib && mamba clean --all -f -y
 
